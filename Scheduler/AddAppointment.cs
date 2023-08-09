@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace Scheduler
 {
-    public partial class Appointment : Form
+    public partial class AddAppointment : Form
     {
-        public Appointment()
+        
+
+        public AddAppointment()
         {
             InitializeComponent();
         }

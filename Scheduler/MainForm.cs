@@ -39,7 +39,7 @@ namespace Scheduler
 
         private void AppoitmentsAddButton_Click(object sender, EventArgs e)
         {
-            new Appointment().Show(); this.Hide();
+            new AddAppointment().Show(); this.Hide();
         }
 
         private void AppoitmentsUpdateButton_Click(object sender, EventArgs e)

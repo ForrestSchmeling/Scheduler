@@ -46,6 +46,8 @@ namespace Scheduler
             this.TitleTextBox = new System.Windows.Forms.TextBox();
             this.AppointmentSaveButton = new System.Windows.Forms.Button();
             this.AppointmentCancelButton = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -61,7 +63,7 @@ namespace Scheduler
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 59);
+            this.label3.Location = new System.Drawing.Point(30, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 2;
@@ -70,7 +72,7 @@ namespace Scheduler
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 135);
+            this.label4.Location = new System.Drawing.Point(31, 93);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 13);
             this.label4.TabIndex = 3;
@@ -79,7 +81,7 @@ namespace Scheduler
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 98);
+            this.label5.Location = new System.Drawing.Point(30, 66);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 4;
@@ -88,7 +90,7 @@ namespace Scheduler
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 168);
+            this.label2.Location = new System.Drawing.Point(31, 123);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 5;
@@ -97,7 +99,7 @@ namespace Scheduler
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(30, 204);
+            this.label6.Location = new System.Drawing.Point(30, 167);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 13);
             this.label6.TabIndex = 6;
@@ -138,7 +140,7 @@ namespace Scheduler
             // CustomerTextBox
             // 
             this.CustomerTextBox.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.CustomerTextBox.Location = new System.Drawing.Point(133, 56);
+            this.CustomerTextBox.Location = new System.Drawing.Point(133, 37);
             this.CustomerTextBox.Name = "CustomerTextBox";
             this.CustomerTextBox.ReadOnly = true;
             this.CustomerTextBox.Size = new System.Drawing.Size(121, 20);
@@ -149,7 +151,7 @@ namespace Scheduler
             this.ContactCombo.BackColor = System.Drawing.SystemColors.Window;
             this.ContactCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ContactCombo.FormattingEnabled = true;
-            this.ContactCombo.Location = new System.Drawing.Point(133, 95);
+            this.ContactCombo.Location = new System.Drawing.Point(133, 63);
             this.ContactCombo.Name = "ContactCombo";
             this.ContactCombo.Size = new System.Drawing.Size(121, 21);
             this.ContactCombo.TabIndex = 12;
@@ -159,7 +161,7 @@ namespace Scheduler
             this.TypeCombo.BackColor = System.Drawing.SystemColors.Window;
             this.TypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TypeCombo.FormattingEnabled = true;
-            this.TypeCombo.Location = new System.Drawing.Point(133, 165);
+            this.TypeCombo.Location = new System.Drawing.Point(133, 120);
             this.TypeCombo.Name = "TypeCombo";
             this.TypeCombo.Size = new System.Drawing.Size(121, 21);
             this.TypeCombo.TabIndex = 13;
@@ -169,18 +171,17 @@ namespace Scheduler
             this.LocationCombo.BackColor = System.Drawing.SystemColors.Window;
             this.LocationCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LocationCombo.FormattingEnabled = true;
-            this.LocationCombo.Location = new System.Drawing.Point(133, 201);
+            this.LocationCombo.Location = new System.Drawing.Point(133, 159);
             this.LocationCombo.Name = "LocationCombo";
             this.LocationCombo.Size = new System.Drawing.Size(121, 21);
             this.LocationCombo.TabIndex = 14;
             // 
             // TitleTextBox
             // 
-            this.TitleTextBox.Location = new System.Drawing.Point(133, 132);
+            this.TitleTextBox.Location = new System.Drawing.Point(133, 90);
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(121, 20);
             this.TitleTextBox.TabIndex = 15;
-            this.TitleTextBox.Text = "Insert Title Here";
             // 
             // AppointmentSaveButton
             // 
@@ -202,11 +203,29 @@ namespace Scheduler
             this.AppointmentCancelButton.UseVisualStyleBackColor = true;
             this.AppointmentCancelButton.Click += new System.EventHandler(this.AppointmentCancelButton_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(31, 216);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(60, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Description";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(133, 209);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(198, 20);
+            this.textBox1.TabIndex = 19;
+            // 
             // AppointmentUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(432, 406);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.AppointmentCancelButton);
             this.Controls.Add(this.AppointmentSaveButton);
             this.Controls.Add(this.TitleTextBox);
@@ -250,5 +269,7 @@ namespace Scheduler
         private System.Windows.Forms.TextBox TitleTextBox;
         private System.Windows.Forms.Button AppointmentSaveButton;
         private System.Windows.Forms.Button AppointmentCancelButton;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
