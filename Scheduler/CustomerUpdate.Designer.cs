@@ -41,10 +41,8 @@ namespace Scheduler
             this.CustomerAddresssTextBox = new System.Windows.Forms.TextBox();
             this.CustomerZipTextBox = new System.Windows.Forms.TextBox();
             this.CustomerPhoneTextBox = new System.Windows.Forms.TextBox();
-            this.CustomerCountryCombo = new System.Windows.Forms.ComboBox();
-            this.CustomerCityCombo = new System.Windows.Forms.ComboBox();
-            this.ActiveRadio = new System.Windows.Forms.RadioButton();
-            this.InactiveRadio = new System.Windows.Forms.RadioButton();
+            this.citytextbox = new System.Windows.Forms.TextBox();
+            this.countrytextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -60,7 +58,7 @@ namespace Scheduler
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 89);
+            this.label2.Location = new System.Drawing.Point(21, 68);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 3;
@@ -69,7 +67,7 @@ namespace Scheduler
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 133);
+            this.label4.Location = new System.Drawing.Point(21, 112);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 13);
             this.label4.TabIndex = 4;
@@ -78,7 +76,7 @@ namespace Scheduler
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(229, 184);
+            this.label5.Location = new System.Drawing.Point(227, 163);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(24, 13);
             this.label5.TabIndex = 5;
@@ -87,7 +85,7 @@ namespace Scheduler
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 184);
+            this.label6.Location = new System.Drawing.Point(21, 163);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 13);
             this.label6.TabIndex = 6;
@@ -96,7 +94,7 @@ namespace Scheduler
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 282);
+            this.label7.Location = new System.Drawing.Point(16, 261);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 13);
             this.label7.TabIndex = 7;
@@ -105,7 +103,7 @@ namespace Scheduler
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(23, 238);
+            this.label8.Location = new System.Drawing.Point(21, 217);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(22, 13);
             this.label8.TabIndex = 8;
@@ -133,74 +131,45 @@ namespace Scheduler
             // 
             // CustomerNameTextBox
             // 
-            this.CustomerNameTextBox.Location = new System.Drawing.Point(87, 86);
+            this.CustomerNameTextBox.Location = new System.Drawing.Point(85, 65);
             this.CustomerNameTextBox.Name = "CustomerNameTextBox";
             this.CustomerNameTextBox.Size = new System.Drawing.Size(100, 20);
             this.CustomerNameTextBox.TabIndex = 13;
             // 
             // CustomerAddresssTextBox
             // 
-            this.CustomerAddresssTextBox.Location = new System.Drawing.Point(87, 130);
+            this.CustomerAddresssTextBox.Location = new System.Drawing.Point(85, 109);
             this.CustomerAddresssTextBox.Name = "CustomerAddresssTextBox";
             this.CustomerAddresssTextBox.Size = new System.Drawing.Size(100, 20);
             this.CustomerAddresssTextBox.TabIndex = 14;
             // 
             // CustomerZipTextBox
             // 
-            this.CustomerZipTextBox.Location = new System.Drawing.Point(87, 235);
+            this.CustomerZipTextBox.Location = new System.Drawing.Point(85, 214);
             this.CustomerZipTextBox.Name = "CustomerZipTextBox";
             this.CustomerZipTextBox.Size = new System.Drawing.Size(100, 20);
             this.CustomerZipTextBox.TabIndex = 15;
             // 
             // CustomerPhoneTextBox
             // 
-            this.CustomerPhoneTextBox.Location = new System.Drawing.Point(87, 279);
+            this.CustomerPhoneTextBox.Location = new System.Drawing.Point(85, 258);
             this.CustomerPhoneTextBox.Name = "CustomerPhoneTextBox";
             this.CustomerPhoneTextBox.Size = new System.Drawing.Size(100, 20);
             this.CustomerPhoneTextBox.TabIndex = 16;
             // 
-            // CustomerCountryCombo
+            // citytextbox
             // 
-            this.CustomerCountryCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CustomerCountryCombo.FormattingEnabled = true;
-            this.CustomerCountryCombo.Location = new System.Drawing.Point(87, 181);
-            this.CustomerCountryCombo.Name = "CustomerCountryCombo";
-            this.CustomerCountryCombo.Size = new System.Drawing.Size(121, 21);
-            this.CustomerCountryCombo.TabIndex = 17;
+            this.citytextbox.Location = new System.Drawing.Point(268, 160);
+            this.citytextbox.Name = "citytextbox";
+            this.citytextbox.Size = new System.Drawing.Size(100, 20);
+            this.citytextbox.TabIndex = 19;
             // 
-            // CustomerCityCombo
+            // countrytextbox
             // 
-            this.CustomerCityCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CustomerCityCombo.FormattingEnabled = true;
-            this.CustomerCityCombo.Location = new System.Drawing.Point(268, 181);
-            this.CustomerCityCombo.Name = "CustomerCityCombo";
-            this.CustomerCityCombo.Size = new System.Drawing.Size(121, 21);
-            this.CustomerCityCombo.TabIndex = 18;
-            // 
-            // ActiveRadio
-            // 
-            this.ActiveRadio.AutoSize = true;
-            this.ActiveRadio.Checked = true;
-            this.ActiveRadio.Location = new System.Drawing.Point(111, 47);
-            this.ActiveRadio.Name = "ActiveRadio";
-            this.ActiveRadio.Size = new System.Drawing.Size(55, 17);
-            this.ActiveRadio.TabIndex = 19;
-            this.ActiveRadio.TabStop = true;
-            this.ActiveRadio.Text = "Active";
-            this.ActiveRadio.UseVisualStyleBackColor = true;
-            this.ActiveRadio.CheckedChanged += new System.EventHandler(this.ActiveRadio_CheckedChanged);
-            // 
-            // InactiveRadio
-            // 
-            this.InactiveRadio.AutoSize = true;
-            this.InactiveRadio.Location = new System.Drawing.Point(251, 47);
-            this.InactiveRadio.Name = "InactiveRadio";
-            this.InactiveRadio.Size = new System.Drawing.Size(63, 17);
-            this.InactiveRadio.TabIndex = 20;
-            this.InactiveRadio.TabStop = true;
-            this.InactiveRadio.Text = "Inactive";
-            this.InactiveRadio.UseVisualStyleBackColor = true;
-            this.InactiveRadio.CheckedChanged += new System.EventHandler(this.InactiveRadio_CheckedChanged);
+            this.countrytextbox.Location = new System.Drawing.Point(85, 163);
+            this.countrytextbox.Name = "countrytextbox";
+            this.countrytextbox.Size = new System.Drawing.Size(100, 20);
+            this.countrytextbox.TabIndex = 20;
             // 
             // CustomerUpdate
             // 
@@ -208,10 +177,8 @@ namespace Scheduler
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(401, 404);
-            this.Controls.Add(this.InactiveRadio);
-            this.Controls.Add(this.ActiveRadio);
-            this.Controls.Add(this.CustomerCityCombo);
-            this.Controls.Add(this.CustomerCountryCombo);
+            this.Controls.Add(this.countrytextbox);
+            this.Controls.Add(this.citytextbox);
             this.Controls.Add(this.CustomerPhoneTextBox);
             this.Controls.Add(this.CustomerZipTextBox);
             this.Controls.Add(this.CustomerAddresssTextBox);
@@ -227,6 +194,7 @@ namespace Scheduler
             this.Controls.Add(this.label1);
             this.Name = "CustomerUpdate";
             this.Text = "AddCustomer";
+            this.Load += new System.EventHandler(this.CustomerUpdate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,9 +215,7 @@ namespace Scheduler
         private System.Windows.Forms.TextBox CustomerAddresssTextBox;
         private System.Windows.Forms.TextBox CustomerZipTextBox;
         private System.Windows.Forms.TextBox CustomerPhoneTextBox;
-        private System.Windows.Forms.ComboBox CustomerCountryCombo;
-        private System.Windows.Forms.ComboBox CustomerCityCombo;
-        private System.Windows.Forms.RadioButton ActiveRadio;
-        private System.Windows.Forms.RadioButton InactiveRadio;
+        private System.Windows.Forms.TextBox citytextbox;
+        private System.Windows.Forms.TextBox countrytextbox;
     }
 }

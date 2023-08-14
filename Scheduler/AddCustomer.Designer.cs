@@ -30,7 +30,6 @@ namespace Scheduler
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -39,13 +38,12 @@ namespace Scheduler
             this.label8 = new System.Windows.Forms.Label();
             this.InfoSaveButton = new System.Windows.Forms.Button();
             this.InfoCancelButton = new System.Windows.Forms.Button();
-            this.CustomerIdTextBox = new System.Windows.Forms.TextBox();
             this.CustomerNameTextBox = new System.Windows.Forms.TextBox();
             this.CustomerAddresssTextBox = new System.Windows.Forms.TextBox();
             this.CustomerZipTextBox = new System.Windows.Forms.TextBox();
             this.CustomerPhoneTextBox = new System.Windows.Forms.TextBox();
-            this.CustomerCountryCombo = new System.Windows.Forms.ComboBox();
-            this.CustomerCityCombo = new System.Windows.Forms.ComboBox();
+            this.Citytextbox = new System.Windows.Forms.TextBox();
+            this.Countrytextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -58,19 +56,10 @@ namespace Scheduler
             this.label1.TabIndex = 0;
             this.label1.Text = "Customer Information";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 52);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(18, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "ID";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 89);
+            this.label2.Location = new System.Drawing.Point(20, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 3;
@@ -79,7 +68,7 @@ namespace Scheduler
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 133);
+            this.label4.Location = new System.Drawing.Point(20, 101);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 13);
             this.label4.TabIndex = 4;
@@ -88,7 +77,7 @@ namespace Scheduler
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(229, 184);
+            this.label5.Location = new System.Drawing.Point(226, 152);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(24, 13);
             this.label5.TabIndex = 5;
@@ -97,7 +86,7 @@ namespace Scheduler
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 184);
+            this.label6.Location = new System.Drawing.Point(20, 152);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 13);
             this.label6.TabIndex = 6;
@@ -106,7 +95,7 @@ namespace Scheduler
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 282);
+            this.label7.Location = new System.Drawing.Point(15, 250);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 13);
             this.label7.TabIndex = 7;
@@ -115,7 +104,7 @@ namespace Scheduler
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(23, 238);
+            this.label8.Location = new System.Drawing.Point(20, 206);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(22, 13);
             this.label8.TabIndex = 8;
@@ -141,60 +130,47 @@ namespace Scheduler
             this.InfoCancelButton.UseVisualStyleBackColor = true;
             this.InfoCancelButton.Click += new System.EventHandler(this.InfoCancelButton_Click);
             // 
-            // CustomerIdTextBox
-            // 
-            this.CustomerIdTextBox.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.CustomerIdTextBox.Location = new System.Drawing.Point(87, 49);
-            this.CustomerIdTextBox.Name = "CustomerIdTextBox";
-            this.CustomerIdTextBox.ReadOnly = true;
-            this.CustomerIdTextBox.Size = new System.Drawing.Size(100, 20);
-            this.CustomerIdTextBox.TabIndex = 12;
-            // 
             // CustomerNameTextBox
             // 
-            this.CustomerNameTextBox.Location = new System.Drawing.Point(87, 86);
+            this.CustomerNameTextBox.Location = new System.Drawing.Point(84, 54);
             this.CustomerNameTextBox.Name = "CustomerNameTextBox";
             this.CustomerNameTextBox.Size = new System.Drawing.Size(100, 20);
             this.CustomerNameTextBox.TabIndex = 13;
             // 
             // CustomerAddresssTextBox
             // 
-            this.CustomerAddresssTextBox.Location = new System.Drawing.Point(87, 130);
+            this.CustomerAddresssTextBox.Location = new System.Drawing.Point(84, 98);
             this.CustomerAddresssTextBox.Name = "CustomerAddresssTextBox";
             this.CustomerAddresssTextBox.Size = new System.Drawing.Size(100, 20);
             this.CustomerAddresssTextBox.TabIndex = 14;
             // 
             // CustomerZipTextBox
             // 
-            this.CustomerZipTextBox.Location = new System.Drawing.Point(87, 235);
+            this.CustomerZipTextBox.Location = new System.Drawing.Point(84, 203);
             this.CustomerZipTextBox.Name = "CustomerZipTextBox";
             this.CustomerZipTextBox.Size = new System.Drawing.Size(100, 20);
             this.CustomerZipTextBox.TabIndex = 15;
             // 
             // CustomerPhoneTextBox
             // 
-            this.CustomerPhoneTextBox.Location = new System.Drawing.Point(87, 279);
+            this.CustomerPhoneTextBox.Location = new System.Drawing.Point(84, 247);
             this.CustomerPhoneTextBox.Name = "CustomerPhoneTextBox";
             this.CustomerPhoneTextBox.Size = new System.Drawing.Size(100, 20);
             this.CustomerPhoneTextBox.TabIndex = 16;
             // 
-            // CustomerCountryCombo
+            // Citytextbox
             // 
-            this.CustomerCountryCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CustomerCountryCombo.FormattingEnabled = true;
-            this.CustomerCountryCombo.Location = new System.Drawing.Point(87, 181);
-            this.CustomerCountryCombo.Name = "CustomerCountryCombo";
-            this.CustomerCountryCombo.Size = new System.Drawing.Size(121, 21);
-            this.CustomerCountryCombo.TabIndex = 17;
+            this.Citytextbox.Location = new System.Drawing.Point(269, 150);
+            this.Citytextbox.Name = "Citytextbox";
+            this.Citytextbox.Size = new System.Drawing.Size(100, 20);
+            this.Citytextbox.TabIndex = 19;
             // 
-            // CustomerCityCombo
+            // Countrytextbox
             // 
-            this.CustomerCityCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CustomerCityCombo.FormattingEnabled = true;
-            this.CustomerCityCombo.Location = new System.Drawing.Point(268, 181);
-            this.CustomerCityCombo.Name = "CustomerCityCombo";
-            this.CustomerCityCombo.Size = new System.Drawing.Size(121, 21);
-            this.CustomerCityCombo.TabIndex = 18;
+            this.Countrytextbox.Location = new System.Drawing.Point(84, 150);
+            this.Countrytextbox.Name = "Countrytextbox";
+            this.Countrytextbox.Size = new System.Drawing.Size(100, 20);
+            this.Countrytextbox.TabIndex = 20;
             // 
             // AddCustomer
             // 
@@ -202,13 +178,12 @@ namespace Scheduler
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(401, 404);
-            this.Controls.Add(this.CustomerCityCombo);
-            this.Controls.Add(this.CustomerCountryCombo);
+            this.Controls.Add(this.Countrytextbox);
+            this.Controls.Add(this.Citytextbox);
             this.Controls.Add(this.CustomerPhoneTextBox);
             this.Controls.Add(this.CustomerZipTextBox);
             this.Controls.Add(this.CustomerAddresssTextBox);
             this.Controls.Add(this.CustomerNameTextBox);
-            this.Controls.Add(this.CustomerIdTextBox);
             this.Controls.Add(this.InfoCancelButton);
             this.Controls.Add(this.InfoSaveButton);
             this.Controls.Add(this.label8);
@@ -217,7 +192,6 @@ namespace Scheduler
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "AddCustomer";
             this.Text = "AddCustomer";
@@ -229,7 +203,6 @@ namespace Scheduler
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -238,12 +211,11 @@ namespace Scheduler
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button InfoSaveButton;
         private System.Windows.Forms.Button InfoCancelButton;
-        private System.Windows.Forms.TextBox CustomerIdTextBox;
         private System.Windows.Forms.TextBox CustomerNameTextBox;
         private System.Windows.Forms.TextBox CustomerAddresssTextBox;
         private System.Windows.Forms.TextBox CustomerZipTextBox;
         private System.Windows.Forms.TextBox CustomerPhoneTextBox;
-        private System.Windows.Forms.ComboBox CustomerCountryCombo;
-        private System.Windows.Forms.ComboBox CustomerCityCombo;
+        private System.Windows.Forms.TextBox Citytextbox;
+        private System.Windows.Forms.TextBox Countrytextbox;
     }
 }

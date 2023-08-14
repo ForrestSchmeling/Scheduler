@@ -29,7 +29,7 @@ namespace Scheduler
         /// </summary>
         private void InitializeComponent()
         {
-            this.AppoitmentsDGV = new System.Windows.Forms.DataGridView();
+            this.AppointmentsDGV = new System.Windows.Forms.DataGridView();
             this.CustomersDGV = new System.Windows.Forms.DataGridView();
             this.WeekViewRadio = new System.Windows.Forms.RadioButton();
             this.MonthViewRadio = new System.Windows.Forms.RadioButton();
@@ -45,45 +45,45 @@ namespace Scheduler
             this.CustomersUpdateButton = new System.Windows.Forms.Button();
             this.CustomersDeleteButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.AppoitmentsDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AppointmentsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomersDGV)).BeginInit();
             this.SuspendLayout();
             // 
-            // AppoitmentsDGV
+            // AppointmentsDGV
             // 
-            this.AppoitmentsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AppoitmentsDGV.Location = new System.Drawing.Point(17, 37);
-            this.AppoitmentsDGV.Name = "AppoitmentsDGV";
-            this.AppoitmentsDGV.Size = new System.Drawing.Size(718, 102);
-            this.AppoitmentsDGV.TabIndex = 0;
+            this.AppointmentsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AppointmentsDGV.Location = new System.Drawing.Point(17, 37);
+            this.AppointmentsDGV.Name = "AppointmentsDGV";
+            this.AppointmentsDGV.Size = new System.Drawing.Size(762, 131);
+            this.AppointmentsDGV.TabIndex = 0;
             // 
             // CustomersDGV
             // 
             this.CustomersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CustomersDGV.Location = new System.Drawing.Point(17, 226);
+            this.CustomersDGV.Location = new System.Drawing.Point(17, 243);
             this.CustomersDGV.Name = "CustomersDGV";
-            this.CustomersDGV.Size = new System.Drawing.Size(723, 107);
+            this.CustomersDGV.Size = new System.Drawing.Size(762, 129);
             this.CustomersDGV.TabIndex = 1;
             // 
             // WeekViewRadio
             // 
             this.WeekViewRadio.AutoSize = true;
-            this.WeekViewRadio.Location = new System.Drawing.Point(533, 12);
+            this.WeekViewRadio.Location = new System.Drawing.Point(496, 12);
             this.WeekViewRadio.Name = "WeekViewRadio";
-            this.WeekViewRadio.Size = new System.Drawing.Size(54, 17);
+            this.WeekViewRadio.Size = new System.Drawing.Size(91, 17);
             this.WeekViewRadio.TabIndex = 2;
-            this.WeekViewRadio.Text = "Week";
+            this.WeekViewRadio.Text = "Current Week";
             this.WeekViewRadio.UseVisualStyleBackColor = true;
             this.WeekViewRadio.CheckedChanged += new System.EventHandler(this.WeekViewRadio_CheckedChanged);
             // 
             // MonthViewRadio
             // 
             this.MonthViewRadio.AutoSize = true;
-            this.MonthViewRadio.Location = new System.Drawing.Point(616, 12);
+            this.MonthViewRadio.Location = new System.Drawing.Point(593, 12);
             this.MonthViewRadio.Name = "MonthViewRadio";
-            this.MonthViewRadio.Size = new System.Drawing.Size(55, 17);
+            this.MonthViewRadio.Size = new System.Drawing.Size(92, 17);
             this.MonthViewRadio.TabIndex = 3;
-            this.MonthViewRadio.Text = "Month";
+            this.MonthViewRadio.Text = "Current Month";
             this.MonthViewRadio.UseVisualStyleBackColor = true;
             this.MonthViewRadio.CheckedChanged += new System.EventHandler(this.MonthViewRadio_CheckedChanged);
             // 
@@ -104,7 +104,7 @@ namespace Scheduler
             // 
             this.LogoutButton.BackColor = System.Drawing.Color.DarkRed;
             this.LogoutButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.LogoutButton.Location = new System.Drawing.Point(712, 369);
+            this.LogoutButton.Location = new System.Drawing.Point(772, 417);
             this.LogoutButton.Name = "LogoutButton";
             this.LogoutButton.Size = new System.Drawing.Size(75, 23);
             this.LogoutButton.TabIndex = 5;
@@ -114,7 +114,7 @@ namespace Scheduler
             // 
             // ReportsButton
             // 
-            this.ReportsButton.Location = new System.Drawing.Point(582, 369);
+            this.ReportsButton.Location = new System.Drawing.Point(665, 417);
             this.ReportsButton.Name = "ReportsButton";
             this.ReportsButton.Size = new System.Drawing.Size(75, 23);
             this.ReportsButton.TabIndex = 6;
@@ -136,7 +136,7 @@ namespace Scheduler
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 198);
+            this.label1.Location = new System.Drawing.Point(12, 215);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 25);
             this.label1.TabIndex = 9;
@@ -144,7 +144,7 @@ namespace Scheduler
             // 
             // AppoitmentsAddButton
             // 
-            this.AppoitmentsAddButton.Location = new System.Drawing.Point(17, 145);
+            this.AppoitmentsAddButton.Location = new System.Drawing.Point(17, 174);
             this.AppoitmentsAddButton.Name = "AppoitmentsAddButton";
             this.AppoitmentsAddButton.Size = new System.Drawing.Size(75, 23);
             this.AppoitmentsAddButton.TabIndex = 10;
@@ -154,7 +154,7 @@ namespace Scheduler
             // 
             // AppoitmentsUpdateButton
             // 
-            this.AppoitmentsUpdateButton.Location = new System.Drawing.Point(122, 145);
+            this.AppoitmentsUpdateButton.Location = new System.Drawing.Point(122, 174);
             this.AppoitmentsUpdateButton.Name = "AppoitmentsUpdateButton";
             this.AppoitmentsUpdateButton.Size = new System.Drawing.Size(75, 23);
             this.AppoitmentsUpdateButton.TabIndex = 11;
@@ -164,7 +164,7 @@ namespace Scheduler
             // 
             // AppoitmentsDeleteButton
             // 
-            this.AppoitmentsDeleteButton.Location = new System.Drawing.Point(238, 145);
+            this.AppoitmentsDeleteButton.Location = new System.Drawing.Point(238, 174);
             this.AppoitmentsDeleteButton.Name = "AppoitmentsDeleteButton";
             this.AppoitmentsDeleteButton.Size = new System.Drawing.Size(75, 23);
             this.AppoitmentsDeleteButton.TabIndex = 12;
@@ -174,7 +174,7 @@ namespace Scheduler
             // 
             // CustomersAddButton
             // 
-            this.CustomersAddButton.Location = new System.Drawing.Point(17, 338);
+            this.CustomersAddButton.Location = new System.Drawing.Point(12, 378);
             this.CustomersAddButton.Name = "CustomersAddButton";
             this.CustomersAddButton.Size = new System.Drawing.Size(75, 23);
             this.CustomersAddButton.TabIndex = 13;
@@ -184,7 +184,7 @@ namespace Scheduler
             // 
             // CustomersUpdateButton
             // 
-            this.CustomersUpdateButton.Location = new System.Drawing.Point(122, 339);
+            this.CustomersUpdateButton.Location = new System.Drawing.Point(122, 378);
             this.CustomersUpdateButton.Name = "CustomersUpdateButton";
             this.CustomersUpdateButton.Size = new System.Drawing.Size(75, 23);
             this.CustomersUpdateButton.TabIndex = 14;
@@ -194,7 +194,7 @@ namespace Scheduler
             // 
             // CustomersDeleteButton
             // 
-            this.CustomersDeleteButton.Location = new System.Drawing.Point(238, 339);
+            this.CustomersDeleteButton.Location = new System.Drawing.Point(238, 378);
             this.CustomersDeleteButton.Name = "CustomersDeleteButton";
             this.CustomersDeleteButton.Size = new System.Drawing.Size(75, 23);
             this.CustomersDeleteButton.TabIndex = 15;
@@ -204,7 +204,7 @@ namespace Scheduler
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(470, 369);
+            this.ExitButton.Location = new System.Drawing.Point(555, 417);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(75, 23);
             this.ExitButton.TabIndex = 16;
@@ -216,7 +216,7 @@ namespace Scheduler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 404);
+            this.ClientSize = new System.Drawing.Size(859, 452);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.CustomersDeleteButton);
             this.Controls.Add(this.CustomersUpdateButton);
@@ -232,10 +232,10 @@ namespace Scheduler
             this.Controls.Add(this.MonthViewRadio);
             this.Controls.Add(this.WeekViewRadio);
             this.Controls.Add(this.CustomersDGV);
-            this.Controls.Add(this.AppoitmentsDGV);
+            this.Controls.Add(this.AppointmentsDGV);
             this.Name = "MainForm";
             this.Text = "MainForm";
-            ((System.ComponentModel.ISupportInitialize)(this.AppoitmentsDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AppointmentsDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomersDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -243,9 +243,6 @@ namespace Scheduler
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView AppoitmentsDGV;
-        private System.Windows.Forms.DataGridView CustomersDGV;
         private System.Windows.Forms.RadioButton WeekViewRadio;
         private System.Windows.Forms.RadioButton MonthViewRadio;
         private System.Windows.Forms.RadioButton AllViewRadio;
@@ -260,5 +257,7 @@ namespace Scheduler
         private System.Windows.Forms.Button CustomersUpdateButton;
         private System.Windows.Forms.Button CustomersDeleteButton;
         private System.Windows.Forms.Button ExitButton;
+        public System.Windows.Forms.DataGridView CustomersDGV;
+        public System.Windows.Forms.DataGridView AppointmentsDGV;
     }
 }

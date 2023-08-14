@@ -136,13 +136,13 @@ namespace Scheduler.Database
 
             try
             {
-                string query = "SELECT customer.customerName, address.phone, address.address, address.postalCode, city.city, country.country FROM customer" +
-                    "LEFT JOIN address ON customer.addressId = address.addrressId" +
-                    "LEFT JOIN city ON address.Id = city.cityId" +
-                    "LEFT JOIN country ON city.countryId = country.countryId" +
-                    "WHERE customer.customerId = @CustomerId";
+                string query = "SELECT customer.customerName, address.phone, address.address, address.postalCode, city.city, country.country FROM customer " +
+                    "LEFT JOIN address ON customer.addressId = address.addressId " +
+                    "LEFT JOIN city ON address.cityId = city.cityId " +
+                    "LEFT JOIN country ON city.countryId = country.countryId " +
+                    "WHERE customer.customerId = @custId";
                 MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@CustomerId", customerID);
+                command.Parameters.AddWithValue("@custId", customerID);
                 using(MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -175,10 +175,10 @@ namespace Scheduler.Database
                     "UPDATE customer SET customerName = @customerName WHERE customerId = @customerId;" +
                     "UPDATE address SET address = @address, postalcode = @postalCode, phone= @phone " +
                     "WHERE addressId = (SELECT addressId FROM customer WHERE customerId = @customerId); " +
-                    "UPDATE city SET city = @city" +
+                    "UPDATE city SET city = @city " +
                     "WHERE cityId = (SELECT cityId FROM address WHERE addressId = (SELECT addressId FROM customer WHERE customerId = @customerID));" +
-                    "UPDATE country SET country = @country" +
-                    "WHERE countryId = (SELECT countryId FROM city WHERE cityId = (SELECT cityId FROM address WHERE addressId = (SELECT addressId FROM customer WHERE customerId= @customerId";
+                    "UPDATE country SET country = @country " +
+                    "WHERE countryId = (SELECT countryId FROM city WHERE cityId = (SELECT cityId FROM address WHERE addressId = (SELECT addressId FROM customer WHERE customerId= @customerId)))";
 
                 MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = UpdateCommand;
@@ -215,10 +215,10 @@ namespace Scheduler.Database
             if (!CustomersDataTable.Columns.Contains("Country")) { CustomersDataTable.Columns.Add("Country", typeof(string)); }
             try
             {
-                string query = "SELECT customer.customerId, customer.customerName, customer.phone, customer.address, customer.city, customer.postalCode, customer.country FROM customer" +
-                    "LEFT JOIN address ON customer.addressId = address.addressId" +
-                    "LEFT JOIN city ON customer.cityId = city.cityId" +
-                    "LEFT JOIN country ON customer.countryId = country.countryId";
+                string query = "SELECT customer.customerId, customer.customerName, address.phone, address.address, city.city, address.postalCode, country.country FROM customer " +
+                    "LEFT JOIN address ON customer.addressId = address.addressId " +
+                    "LEFT JOIN city ON address.cityId = city.cityId " +
+                    "LEFT JOIN country ON city.countryId = country.countryId";
 
                 MySqlCommand command = new MySqlCommand(query, conn);
                 using (MySqlDataReader reader = command.ExecuteReader())
@@ -237,15 +237,138 @@ namespace Scheduler.Database
             return CustomersDataTable;
         }
 
+        public DataTable Getlocation()
+        {
+            DataTable location = new DataTable();
+            if (!location.Columns.Contains("Name")) { location.Columns.Add("Name", typeof(string)); }
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT location FROM appointment;";
+            cmd.ExecuteNonQuery();
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    location.Rows.Add(reader["location"]);
+
+                }
+            }
+            return location;
+        }
+
+        public DataTable Getcountry()
+        {
+            DataTable country = new DataTable();
+            if (!country.Columns.Contains("Name")) { country.Columns.Add("Name", typeof(string)); }
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT country FROM country;";
+            cmd.ExecuteNonQuery();
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    country.Rows.Add(reader["country"]);
+
+                }
+            }
+            return country;
+        }
+
+
+
+        public DataTable Getcity()
+        {
+            DataTable city = new DataTable();
+            if (!city.Columns.Contains("Name")) { city.Columns.Add("Name", typeof(string)); }
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT city FROM city;";
+            cmd.ExecuteNonQuery();
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    city.Rows.Add(reader["city"]);
+
+                }
+            }
+            return city;
+        }
+
+
+        public DataTable GetType()
+        {
+            DataTable type = new DataTable();
+            if (!type.Columns.Contains("Name")) { type.Columns.Add("Name", typeof(string)); }
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT type FROM appointment;";
+            cmd.ExecuteNonQuery();
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    type.Rows.Add(reader["type"]);
+
+                }
+            }
+            return type;
+        }
+
+        public DataTable GetConsultantName()
+        {
+            DataTable consultant = new DataTable();
+            if (!consultant.Columns.Contains("Name")) { consultant.Columns.Add("Name", typeof(string)); }
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT contact FROM appointment;";
+            cmd.ExecuteNonQuery();
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    consultant.Rows.Add(reader["contact"]);
+
+                }
+            }
+            return consultant;
+        }
+
+            public DataTable GetCustomerName()
+        {
+            DataTable Customers = new DataTable();
+            if (!Customers.Columns.Contains("Name")) { Customers.Columns.Add("Name", typeof(string)); }
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT customer.customerName FROM customer;";
+            cmd.ExecuteNonQuery();
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Customers.Rows.Add(reader["customerName"]);
+
+                }
+            }
+            return Customers;
+
+        }
         public bool AddCustomer(Customer customer)
         {
+            
             try
             {
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = ("INSERT INTO customer(customerName,addressId,active) VAlUES(@customerName, @addressId, @active");
+                cmd.CommandText = "INSERT INTO customer(customerName,addressId, active,createdBy, createDate,lastUpdate, lastUpdateBy) VAlUES(@customerName,@addressId, @active,@createdBy, @createDate,@lastUpdate,@lastUpdateBy) ";
+
                 cmd.Parameters.AddWithValue("@customerName", customer.customerName);
                 cmd.Parameters.AddWithValue("@addressId", customer.addressID);
                 cmd.Parameters.AddWithValue("@active", 1);
+                cmd.Parameters.AddWithValue("@createdBy", customer.createdBy);
+                cmd.Parameters.AddWithValue("@createDate", customer.createDate);
+                cmd.Parameters.AddWithValue("@lastUpdate", customer.lastupdate);
+                cmd.Parameters.AddWithValue("@lastUpdateBy", customer.lastupdateby);
                 cmd.ExecuteNonQuery();
             }
             catch(Exception ex)
@@ -255,6 +378,10 @@ namespace Scheduler.Database
             }
             return true;
         }
+       
+
+
+
 
         public bool DeleteCustomer(int customerId)
         {
@@ -280,22 +407,78 @@ namespace Scheduler.Database
             try
             {
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO address(address,cityId,postalCode,phone) VALUES (@address, @cityId, @postalCode, @phone);" +
+                cmd.CommandText = "INSERT INTO address(address,address2,cityId,postalCode,phone, createdBy,createDate,lastUpdate,lastUpdateBy) VALUES (@address,@address2,@cityId, @postalCode, @phone, @createdBy,@createDate,@lastUpdate,@lastUpdateBy); " +
                     "SELECT addressId FROM address ORDER BY addressId DESC Limit 1";
                 cmd.Parameters.AddWithValue("@address", address.address);
+                cmd.Parameters.AddWithValue("@address2", address.address2);
+
                 cmd.Parameters.AddWithValue("@cityId", address.cityID);
                 cmd.Parameters.AddWithValue("@postalCode", address.postalCode);
                 cmd.Parameters.AddWithValue("@phone", address.phone);
+                cmd.Parameters.AddWithValue("@createdBy", address.createdby);
+                cmd.Parameters.AddWithValue("@createDate", address.createdate);
+                cmd.Parameters.AddWithValue("@lastUpdate", address.lastupdate);
+                cmd.Parameters.AddWithValue("@lastUpdateBy", address.lastupdateby);
                 addressId = (int)cmd.ExecuteScalar();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error adding address " + ex);
+                addressId = -1;
             }
             return addressId;
         }
 
-        public DataTable GetAppointments(int customerId, int userId)
+        public int addcity(City city)
+        {
+            int cityId = -1;
+            try
+            {
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "INSERT INTO city (city,countryId, createDate,lastUpdate,createdBy,lastUpdateBy) VALUES (@city, @countryId,@createDate,@lastUpdate,@createdBy,@lastUpdateBy); " +
+                    "SELECT cityId FROM city ORDER BY cityId DESC LIMIT 1";
+                cmd.Parameters.AddWithValue("@city", city.city);
+                cmd.Parameters.AddWithValue("@countryId", city.countryID);
+                cmd.Parameters.AddWithValue("@createDate", city.createDate);
+                cmd.Parameters.AddWithValue("@lastUpdate", city.lastUpdate);
+                cmd.Parameters.AddWithValue("@createdBy", city.createdBy);
+                cmd.Parameters.AddWithValue("@lastUpdateBy", city.lastUpdateBy);
+                cityId = (int)cmd.ExecuteScalar();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("ERROR adding city" + ex , "ERROR", MessageBoxButtons.OK);
+                cityId = -1;
+            }
+            return cityId;
+        }
+
+        public int addcountry(Country country)
+        {
+            int countryId = -1;
+
+            try
+            {
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "INSERT INTO country(country,createDate,createdBy,lastUpdate,lastUpdateBy) VALUES(@Country,@createDate,@createdBy,@lastUpdate,@lastUpdateBy); " +
+                    "SELECT countryId FROM country ORDER BY countryId DESC LIMIT 1";
+                cmd.Parameters.AddWithValue("@country", country.country);
+                cmd.Parameters.AddWithValue("@createDate", country.createDate);
+                cmd.Parameters.AddWithValue("@createdBy", country.createdBy);
+                cmd.Parameters.AddWithValue("@lastUpdate", country.lastUpdate);
+                cmd.Parameters.AddWithValue("@lastUpdateBy", country.lastUpdateBy);
+                countryId = (int)cmd.ExecuteScalar();
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("error adding country" + ex, "ERROR", MessageBoxButtons.OK);
+                countryId = -1;
+            }
+            return countryId;
+        }
+
+        public DataTable GetAppointmentsId(int customerId, int userId)
         {
 
             DataTable AppointmentsDataTable = new DataTable();
@@ -328,6 +511,43 @@ namespace Scheduler.Database
 
         }
 
+       
+
+
+        public DataTable GetAppointments()
+        {
+
+            DataTable AppointmentsDataTable = new DataTable();
+
+            if (!AppointmentsDataTable.Columns.Contains("ID")) { AppointmentsDataTable.Columns.Add("ID", typeof(int)); }
+            if (!AppointmentsDataTable.Columns.Contains("Title")) { AppointmentsDataTable.Columns.Add("Title", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("CustomerName")) { AppointmentsDataTable.Columns.Add("CustomerName", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Contact")) { AppointmentsDataTable.Columns.Add("Contact", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Location")) { AppointmentsDataTable.Columns.Add("Location", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Start")) { AppointmentsDataTable.Columns.Add("Start", typeof(DateTime)); }
+            if (!AppointmentsDataTable.Columns.Contains("End")) { AppointmentsDataTable.Columns.Add("End", typeof(DateTime)); }
+            try
+            {
+                string query = "SELECT appointment.appointmentId, appointment.title, customer.customerName, appointment.contact, appointment.location, appointment.start, appointment.end FROM appointment " +
+                    "LEFT JOIN customer ON appointment.customerId = customer.customerId";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        AppointmentsDataTable.Rows.Add(reader["appointmentId"], reader["title"], reader["customerName"], reader["contact"], reader["location"], reader["start"], reader["end"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error getting appointments " + ex);
+            }
+            return AppointmentsDataTable;
+
+        }
+
         public int AddAppointments(Appointment apt)
         {
             int aptId = -1;
@@ -335,7 +555,7 @@ namespace Scheduler.Database
             try
             {
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO appointment(customerId, userId, title, description, location, contact,type, start, end) VALUES (@customerId, @userId,@title,@description,@location,@contact,@type,@start,@end);" +
+                cmd.CommandText = "INSERT INTO appointment(customerId, userId, title, description, location, contact,type, url,createDate,createdBy, lastUpdate, lastUpdateBy, start, end) VALUES (@customerId, @userId,@title,@description,@location,@contact,@type,@url,@createDate,@createdBy,@lastUpdate, @lastUpdateBy, @start,@end);" +
                     "SELECT appointmentId FROM appointment ORDER BY appointmentId DESC LIMIT 1";
                 cmd.Parameters.AddWithValue("@customerId", apt.customerID);
                 cmd.Parameters.AddWithValue("@userId", apt.userID);
@@ -344,6 +564,11 @@ namespace Scheduler.Database
                 cmd.Parameters.AddWithValue("@location", apt.location);
                 cmd.Parameters.AddWithValue("@contact", apt.contact);
                 cmd.Parameters.AddWithValue("@type", apt.type);
+                cmd.Parameters.AddWithValue("@url", apt.url);
+                cmd.Parameters.AddWithValue("@createDate", apt.createDate);
+                cmd.Parameters.AddWithValue("@createdBy", apt.createdBy);
+                cmd.Parameters.AddWithValue("@lastUpdate", apt.lastupdate);
+                cmd.Parameters.AddWithValue("@lastUpdateBy", apt.lastupdateby);
                 cmd.Parameters.AddWithValue("@start", apt.startDate);
                 cmd.Parameters.AddWithValue("@end", apt.endDate);
                 aptId = (int)cmd.ExecuteScalar();
@@ -362,7 +587,7 @@ namespace Scheduler.Database
             try
             {
                 string UpdateCommand =
-                    "UPDATE appointment SET customerId =@customerId, userId = @userId, description = @description, location = @location, " +
+                    "UPDATE appointment SET  userId = @userId, description = @description, location = @location, " +
                     "contact = @contact, start = @start, end = @end WHERE appointmentId = @appointmentId";
                 MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = UpdateCommand;
@@ -370,7 +595,7 @@ namespace Scheduler.Database
                 cmd.Parameters.AddWithValue("@customerId", aptinfo.customerID);
                 cmd.Parameters.AddWithValue("@userId", aptinfo.userID);
                 cmd.Parameters.AddWithValue("@title", aptinfo.title);
-                cmd.Parameters.AddWithValue("@descripton", aptinfo.description);
+                cmd.Parameters.AddWithValue("@description", aptinfo.description);
                 cmd.Parameters.AddWithValue("@location", aptinfo.location);
                 cmd.Parameters.AddWithValue("@contact", aptinfo.contact);
                 cmd.Parameters.AddWithValue("@type", aptinfo.type);
@@ -392,7 +617,7 @@ namespace Scheduler.Database
             try
             {
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "Delete FROM appointment WHERE appointmentId= @appointmentId";
+                cmd.CommandText = "Delete FROM appointment WHERE appointmentId = @appointmentId";
                 cmd.Parameters.AddWithValue("@appointmentId", aptId);
                 cmd.ExecuteNonQuery();
             }
@@ -410,22 +635,23 @@ namespace Scheduler.Database
 
             try
             {
-                string query = "SELECT customerId, title, description, location,contact, type,start,end FROM appointment WHERE appointmentId = @appointmentId";
+                string query = "SELECT customerId, userId, title, description, location,contact, type,url,start,end FROM appointment WHERE appointmentId = @appointmentId";
                 MySqlCommand command = new MySqlCommand(query, conn);
                 command.Parameters.AddWithValue("@appointmentId", aptId);
                 using(MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        aptinfo.customerID = (int)reader["@customerId"];
-                        aptinfo.userID = (int)reader["@userId"];
-                        aptinfo.title = reader["@title"].ToString();
-                        aptinfo.description = reader["@description"].ToString();
-                        aptinfo.location = reader["@location"].ToString();
-                        aptinfo.contact = reader["@contact"].ToString();
-                        aptinfo.type = reader["@type"].ToString();
-                        aptinfo.startDate = Convert.ToDateTime(reader["@start"]);
-                        aptinfo.endDate = Convert.ToDateTime(reader["@end"]);
+                        aptinfo.customerID = (int)reader["customerId"];
+                        aptinfo.userID = (int)reader["userId"];
+                        aptinfo.title = reader["title"].ToString();
+                        aptinfo.description = reader["description"].ToString();
+                        aptinfo.location = reader["location"].ToString();
+                        aptinfo.contact = reader["contact"].ToString();
+                        aptinfo.type = reader["type"].ToString();
+                        aptinfo.url = reader["url"].ToString();
+                        aptinfo.startDate = Convert.ToDateTime(reader["start"]);
+                        aptinfo.endDate = Convert.ToDateTime(reader["end"]);
                     }
                 }
 

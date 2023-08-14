@@ -40,14 +40,16 @@ namespace Scheduler
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.CustomerTextBox = new System.Windows.Forms.TextBox();
-            this.ContactCombo = new System.Windows.Forms.ComboBox();
             this.TypeCombo = new System.Windows.Forms.ComboBox();
-            this.LocationCombo = new System.Windows.Forms.ComboBox();
             this.TitleTextBox = new System.Windows.Forms.TextBox();
             this.AppointmentSaveButton = new System.Windows.Forms.Button();
             this.AppointmentCancelButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.descriptiontextbox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.urltextbox = new System.Windows.Forms.TextBox();
+            this.contacttextbox = new System.Windows.Forms.TextBox();
+            this.locationtextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -107,22 +109,28 @@ namespace Scheduler
             // 
             // StartDateTimePicker
             // 
-            this.StartDateTimePicker.Location = new System.Drawing.Point(133, 247);
+            this.StartDateTimePicker.CustomFormat = "MM/dd/yyyy HH:mm";
+            this.StartDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.StartDateTimePicker.Location = new System.Drawing.Point(133, 288);
             this.StartDateTimePicker.Name = "StartDateTimePicker";
-            this.StartDateTimePicker.Size = new System.Drawing.Size(198, 20);
+            this.StartDateTimePicker.Size = new System.Drawing.Size(135, 20);
             this.StartDateTimePicker.TabIndex = 7;
+            this.StartDateTimePicker.ValueChanged += new System.EventHandler(this.StartDateTimePicker_ValueChanged);
             // 
             // EndDateTimePicker
             // 
-            this.EndDateTimePicker.Location = new System.Drawing.Point(133, 294);
+            this.EndDateTimePicker.CustomFormat = "MM/dd/yyyy HH:mm";
+            this.EndDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.EndDateTimePicker.Location = new System.Drawing.Point(133, 326);
             this.EndDateTimePicker.Name = "EndDateTimePicker";
-            this.EndDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.EndDateTimePicker.Size = new System.Drawing.Size(135, 20);
             this.EndDateTimePicker.TabIndex = 8;
+            this.EndDateTimePicker.ValueChanged += new System.EventHandler(this.EndDateTimePicker_ValueChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(27, 253);
+            this.label7.Location = new System.Drawing.Point(27, 294);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(78, 13);
             this.label7.TabIndex = 9;
@@ -131,7 +139,7 @@ namespace Scheduler
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(27, 300);
+            this.label8.Location = new System.Drawing.Point(27, 332);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(78, 13);
             this.label8.TabIndex = 10;
@@ -146,16 +154,6 @@ namespace Scheduler
             this.CustomerTextBox.Size = new System.Drawing.Size(121, 20);
             this.CustomerTextBox.TabIndex = 11;
             // 
-            // ContactCombo
-            // 
-            this.ContactCombo.BackColor = System.Drawing.SystemColors.Window;
-            this.ContactCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ContactCombo.FormattingEnabled = true;
-            this.ContactCombo.Location = new System.Drawing.Point(133, 63);
-            this.ContactCombo.Name = "ContactCombo";
-            this.ContactCombo.Size = new System.Drawing.Size(121, 21);
-            this.ContactCombo.TabIndex = 12;
-            // 
             // TypeCombo
             // 
             this.TypeCombo.BackColor = System.Drawing.SystemColors.Window;
@@ -165,16 +163,6 @@ namespace Scheduler
             this.TypeCombo.Name = "TypeCombo";
             this.TypeCombo.Size = new System.Drawing.Size(121, 21);
             this.TypeCombo.TabIndex = 13;
-            // 
-            // LocationCombo
-            // 
-            this.LocationCombo.BackColor = System.Drawing.SystemColors.Window;
-            this.LocationCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.LocationCombo.FormattingEnabled = true;
-            this.LocationCombo.Location = new System.Drawing.Point(133, 159);
-            this.LocationCombo.Name = "LocationCombo";
-            this.LocationCombo.Size = new System.Drawing.Size(121, 21);
-            this.LocationCombo.TabIndex = 14;
             // 
             // TitleTextBox
             // 
@@ -206,32 +194,64 @@ namespace Scheduler
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(31, 216);
+            this.label9.Location = new System.Drawing.Point(31, 203);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(60, 13);
             this.label9.TabIndex = 18;
             this.label9.Text = "Description";
             // 
-            // textBox1
+            // descriptiontextbox
             // 
-            this.textBox1.Location = new System.Drawing.Point(133, 209);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(198, 20);
-            this.textBox1.TabIndex = 19;
+            this.descriptiontextbox.Location = new System.Drawing.Point(133, 200);
+            this.descriptiontextbox.Name = "descriptiontextbox";
+            this.descriptiontextbox.Size = new System.Drawing.Size(198, 20);
+            this.descriptiontextbox.TabIndex = 19;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(30, 256);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(20, 13);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Url";
+            // 
+            // urltextbox
+            // 
+            this.urltextbox.Location = new System.Drawing.Point(133, 253);
+            this.urltextbox.Name = "urltextbox";
+            this.urltextbox.Size = new System.Drawing.Size(121, 20);
+            this.urltextbox.TabIndex = 21;
+            // 
+            // contacttextbox
+            // 
+            this.contacttextbox.Location = new System.Drawing.Point(133, 63);
+            this.contacttextbox.Name = "contacttextbox";
+            this.contacttextbox.Size = new System.Drawing.Size(121, 20);
+            this.contacttextbox.TabIndex = 22;
+            // 
+            // locationtextbox
+            // 
+            this.locationtextbox.Location = new System.Drawing.Point(133, 164);
+            this.locationtextbox.Name = "locationtextbox";
+            this.locationtextbox.Size = new System.Drawing.Size(121, 20);
+            this.locationtextbox.TabIndex = 23;
             // 
             // AppointmentUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(432, 406);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.locationtextbox);
+            this.Controls.Add(this.contacttextbox);
+            this.Controls.Add(this.urltextbox);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.descriptiontextbox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.AppointmentCancelButton);
             this.Controls.Add(this.AppointmentSaveButton);
             this.Controls.Add(this.TitleTextBox);
-            this.Controls.Add(this.LocationCombo);
             this.Controls.Add(this.TypeCombo);
-            this.Controls.Add(this.ContactCombo);
             this.Controls.Add(this.CustomerTextBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -263,13 +283,15 @@ namespace Scheduler
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox CustomerTextBox;
-        private System.Windows.Forms.ComboBox ContactCombo;
         private System.Windows.Forms.ComboBox TypeCombo;
-        private System.Windows.Forms.ComboBox LocationCombo;
         private System.Windows.Forms.TextBox TitleTextBox;
         private System.Windows.Forms.Button AppointmentSaveButton;
         private System.Windows.Forms.Button AppointmentCancelButton;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox descriptiontextbox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox urltextbox;
+        private System.Windows.Forms.TextBox contacttextbox;
+        private System.Windows.Forms.TextBox locationtextbox;
     }
 }

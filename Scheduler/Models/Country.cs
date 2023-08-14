@@ -10,5 +10,9 @@ namespace Scheduler.Models
     {
         public int countryID { get; set; }
         public string country { get; set; }
+        public string createdBy { get; set; }
+        public string lastUpdateBy { get; set; }
+        public DateTime createDate { get; set; }
+        public DateTime lastUpdate { get; set; }
     }
 }

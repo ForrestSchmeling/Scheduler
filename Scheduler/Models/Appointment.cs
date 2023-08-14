@@ -14,6 +14,11 @@ namespace Scheduler.Models
         public string title { get; set; }
         public string description { get; set; }
         public string type { get; set; }
+        public string url { get; set; }
+        public DateTime createDate { get; set; }
+        public string createdBy { get; set; }
+        public DateTime lastupdate { get; set; }
+        public string lastupdateby { get; set; }
         public string contact { get; set; }
         public string location { get; set; }
         public DateTime startDate { get; set; }
