@@ -32,5 +32,10 @@ namespace Scheduler
         {
             this.Close();
         }
+
+        private void Reminder_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

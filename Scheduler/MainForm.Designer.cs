@@ -110,7 +110,7 @@ namespace Scheduler
             this.LogoutButton.TabIndex = 5;
             this.LogoutButton.Text = "Logout";
             this.LogoutButton.UseVisualStyleBackColor = false;
-            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
+          //  this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
             // ReportsButton
             // 
@@ -210,7 +210,7 @@ namespace Scheduler
             this.ExitButton.TabIndex = 16;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
-            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+         //   this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // MainForm
             // 

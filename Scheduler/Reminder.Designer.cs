@@ -123,16 +123,20 @@ namespace Scheduler
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(177, 118);
+            this.dateTimePicker1.CustomFormat = "MM/dd/yyyy HH:mm";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(241, 118);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(129, 20);
             this.dateTimePicker1.TabIndex = 10;
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(449, 118);
+            this.dateTimePicker2.CustomFormat = "MM/dd/yyyy HH:mm";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(465, 118);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(183, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(125, 20);
             this.dateTimePicker2.TabIndex = 11;
             // 
             // Reminder
@@ -152,6 +156,7 @@ namespace Scheduler
             this.Controls.Add(this.OKButtton);
             this.Name = "Reminder";
             this.Text = "Reminder";
+            this.Load += new System.EventHandler(this.Reminder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

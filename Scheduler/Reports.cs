@@ -17,15 +17,18 @@ namespace Scheduler
         User currentUser;
         public Reports(User user)
         {
+            
+            currentUser = user;
             InitializeComponent();
+            
             MySQL data = new MySQL();
             CustomerCombo.DataSource = data.GetCustomerName();
             CustomerCombo.DisplayMember = data.GetCustomerName().Columns[0].ToString();
 
             ConsultantCombo.DataSource = data.GetConsultantName();
             ConsultantCombo.DisplayMember = data.GetConsultantName().Columns[0].ToString();
-            
 
+            monthscombo.SelectedIndex = 0;
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -38,6 +41,28 @@ namespace Scheduler
             Application.Exit();
         }
 
-       
+        private void CustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MySQL data = new MySQL();
+            string customername = CustomerCombo.Text;
+            AppointmentCustomerDGV.DataSource = data.GetAppointmentsbycusstname(customername);
+        }
+
+        private void ConsultantCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MySQL data = new MySQL();
+            string contactname = ConsultantCombo.Text;
+            AppointmentConsultantDGV.DataSource = data.GetAppointmentsbycontactname(contactname);
+        }
+
+        private void monthscombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            MySQL data = new MySQL();
+             int month = monthscombo.SelectedIndex;
+            AppointmentTypeDGV.DataSource = data.gettypesmymonth( currentUser.userID, month);
+        }
+      
+        
     }
 }

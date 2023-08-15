@@ -90,15 +90,16 @@ namespace Scheduler.Database
             return userID;
             }
 
-        public List <Appointment> CheckReminders(int userId)
+        public List<Appointment> CheckReminders(int userId)
         {
             List<Appointment> apoint = new List<Appointment>();
             DateTime Currentutc = DateTime.UtcNow;
-
+            
+            
             try
             {
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "SELECT * FROM appointment WHERE userId = @userId AND TIMESTAMPDIFF(MINUTE, start, @currentTime) <15";
+                cmd.CommandText = "SELECT * FROM appointment WHERE userId = @userId AND start BETWEEN @currentTime AND DATE_ADD(@currentTime , INTERVAL 15 MINUTE) ";
                 cmd.Parameters.AddWithValue("@userId", userId);
                 cmd.Parameters.AddWithValue("@currentTime", Currentutc);
                 cmd.ExecuteNonQuery();
@@ -478,7 +479,7 @@ namespace Scheduler.Database
             return countryId;
         }
 
-        public DataTable GetAppointmentsId(int customerId, int userId)
+        public DataTable GetAppointmentsbycusstname(string customername)
         {
 
             DataTable AppointmentsDataTable = new DataTable();
@@ -486,24 +487,65 @@ namespace Scheduler.Database
             if (!AppointmentsDataTable.Columns.Contains("ID"))  { AppointmentsDataTable.Columns.Add("ID", typeof(int)); }
             if (!AppointmentsDataTable.Columns.Contains("Title")) { AppointmentsDataTable.Columns.Add("Title", typeof(string)); }
             if (!AppointmentsDataTable.Columns.Contains("CustomerName")) { AppointmentsDataTable.Columns.Add("CustomerName", typeof(string)); }
-
+            if (!AppointmentsDataTable.Columns.Contains("Contact")) { AppointmentsDataTable.Columns.Add("Contact", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Location")) { AppointmentsDataTable.Columns.Add("Location", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Start")) { AppointmentsDataTable.Columns.Add("Start", typeof(DateTime)); }
+            if (!AppointmentsDataTable.Columns.Contains("End")) { AppointmentsDataTable.Columns.Add("End", typeof(DateTime)); }
             try
             {
-                string query = "SELECT appointment.appointmentId, appointment.title, customer.customerName FROM appointment" +
-                    "LEFT JOIN customer ON appointment.customerId = customer.customerId" +
-                    "WHERE appointment.customerId = @customerId AND appointment.userId = @userId";
+                string query = "SELECT appointment.appointmentId, appointment.title, customer.customerName,appointment.contact,appointment.location,appointment.start, appointment.end FROM appointment " +
+                    "LEFT JOIN customer ON appointment.customerId = customer.customerId " +
+                    "WHERE customer.customerName = @customerName";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@customerId", customerId);
-                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@customerName", customername);
+                
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    while(reader.Read()){
-                        AppointmentsDataTable.Rows.Add(reader["appointmentId"], reader["title"], reader["customerName"]);
+                    while (reader.Read()) {
+                        AppointmentsDataTable.Rows.Add(reader["appointmentId"], reader["title"], reader["customerName"], reader["contact"], reader["location"],reader["start"], reader["end"]);
                     }
                 }
             }
             catch(Exception ex)
+            {
+                MessageBox.Show("Error getting appointments by customer name: " + ex);
+            }
+            return AppointmentsDataTable;
+
+        }
+
+
+        public DataTable GetAppointmentsbycontactname(string contactname)
+        {
+
+            DataTable AppointmentsDataTable = new DataTable();
+
+            if (!AppointmentsDataTable.Columns.Contains("ID")) { AppointmentsDataTable.Columns.Add("ID", typeof(int)); }
+            if (!AppointmentsDataTable.Columns.Contains("Title")) { AppointmentsDataTable.Columns.Add("Title", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("CustomerName")) { AppointmentsDataTable.Columns.Add("CustomerName", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Contact")) { AppointmentsDataTable.Columns.Add("Contact", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Location")) { AppointmentsDataTable.Columns.Add("Location", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Start")) { AppointmentsDataTable.Columns.Add("Start", typeof(DateTime)); }
+            if (!AppointmentsDataTable.Columns.Contains("End")) { AppointmentsDataTable.Columns.Add("End", typeof(DateTime)); }
+            try
+            {
+                string query = "SELECT appointment.appointmentId, appointment.title, customer.customerName,appointment.contact,appointment.location,appointment.start, appointment.end FROM appointment " +
+                    "LEFT JOIN customer ON appointment.customerId = customer.customerId " +
+                    "WHERE appointment.contact = @contact";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@contact", contactname);
+
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        AppointmentsDataTable.Rows.Add(reader["appointmentId"], reader["title"], reader["customerName"], reader["contact"], reader["location"], reader["start"], reader["end"]);
+                    }
+                }
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Error getting appointments " + ex);
             }
@@ -511,7 +553,6 @@ namespace Scheduler.Database
 
         }
 
-       
 
 
         public DataTable GetAppointments()
@@ -547,6 +588,89 @@ namespace Scheduler.Database
             return AppointmentsDataTable;
 
         }
+
+        public DataTable GetAppointmentsbyWeek()
+        {
+
+            DateTime startofweek = DateTime.UtcNow;
+            DateTime endofweek = startofweek.AddDays(7);
+            DataTable AppointmentsDataTable = new DataTable();
+
+            if (!AppointmentsDataTable.Columns.Contains("ID")) { AppointmentsDataTable.Columns.Add("ID", typeof(int)); }
+            if (!AppointmentsDataTable.Columns.Contains("Title")) { AppointmentsDataTable.Columns.Add("Title", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("CustomerName")) { AppointmentsDataTable.Columns.Add("CustomerName", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Contact")) { AppointmentsDataTable.Columns.Add("Contact", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Location")) { AppointmentsDataTable.Columns.Add("Location", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Start")) { AppointmentsDataTable.Columns.Add("Start", typeof(DateTime)); }
+            if (!AppointmentsDataTable.Columns.Contains("End")) { AppointmentsDataTable.Columns.Add("End", typeof(DateTime)); }
+            try
+            {
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT appointment.appointmentId, appointment.title, customer.customerName, appointment.contact, appointment.location, appointment.start, appointment.end FROM appointment " +
+                "LEFT JOIN customer ON appointment.customerId = customer.customerId " +
+                "WHERE appointment.start BETWEEN @startofweek AND @endofweek";
+                cmd.Parameters.AddWithValue("@startofweek", startofweek);
+                cmd.Parameters.AddWithValue("@endofweek", endofweek);
+                cmd.ExecuteNonQuery();
+                
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        AppointmentsDataTable.Rows.Add(reader["appointmentId"], reader["title"], reader["customerName"], reader["contact"], reader["location"], reader["start"], reader["end"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error getting appointments by week " + ex);
+            }
+            return AppointmentsDataTable;
+
+        }
+        public DataTable GetAppointmentsbymonth()
+        {
+
+            DateTime thisdate = DateTime.UtcNow;
+            int month = thisdate.Month;
+            DataTable AppointmentsDataTable = new DataTable();
+
+            if (!AppointmentsDataTable.Columns.Contains("ID")) { AppointmentsDataTable.Columns.Add("ID", typeof(int)); }
+            if (!AppointmentsDataTable.Columns.Contains("Title")) { AppointmentsDataTable.Columns.Add("Title", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("CustomerName")) { AppointmentsDataTable.Columns.Add("CustomerName", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Contact")) { AppointmentsDataTable.Columns.Add("Contact", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Location")) { AppointmentsDataTable.Columns.Add("Location", typeof(string)); }
+            if (!AppointmentsDataTable.Columns.Contains("Start")) { AppointmentsDataTable.Columns.Add("Start", typeof(DateTime)); }
+            if (!AppointmentsDataTable.Columns.Contains("End")) { AppointmentsDataTable.Columns.Add("End", typeof(DateTime)); }
+            try
+            {
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT appointment.appointmentId, appointment.title, customer.customerName, appointment.contact, appointment.location, appointment.start, appointment.end FROM appointment " +
+                "LEFT JOIN customer ON appointment.customerId = customer.customerId " +
+                "WHERE MONTH(appointment.start) = @month";
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.ExecuteNonQuery();
+
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        AppointmentsDataTable.Rows.Add(reader["appointmentId"], reader["title"], reader["customerName"], reader["contact"], reader["location"], reader["start"], reader["end"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error getting appointments by month " + ex);
+            }
+            return AppointmentsDataTable;
+
+        }
+
+
+
 
         public int AddAppointments(Appointment apt)
         {
@@ -687,6 +811,33 @@ namespace Scheduler.Database
             return overlap;
         }
 
+        public DataTable gettypesmymonth(int userId, int month)
+        {
+            DataTable monthstable = new DataTable();
+            if (!monthstable.Columns.Contains("Counts")) { monthstable.Columns.Add("counts", typeof(int)); }
+
+            try
+            {
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT COUNT(type) AS counts from appointment WHERE userId = @userId AND Month(start) = @month";
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.ExecuteNonQuery();
+
+                using(MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        monthstable.Rows.Add(reader["counts"]);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("ERROR getting appointment types by month", "ERROR", MessageBoxButtons.OK);
+            }
+            return monthstable;
+        }
 
 
 

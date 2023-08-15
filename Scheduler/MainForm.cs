@@ -23,16 +23,38 @@ namespace Scheduler
             currentUser = user;
             CustomersDGV.DataSource = data.GetCustomers();
             AppointmentsDGV.DataSource = data.GetAppointments();
+
+            ExitButton.Click += async (sender, e) =>    // *LAMBDA* makes calling exitbutton much simpler
+            {
+                await exitform();    
+            };
+
+            LogoutButton.Click += async (sender, e) =>    // *LAMBDA* makes calling logoutbutton much simpler
+            {
+                await logout();
+            };
+        }
+
+        private async Task exitform()
+        {
+            Application.Exit();
+        }
+
+        private async Task logout()
+        {
+            new LoginForm().Show(); this.Hide();
         }
 
         private void WeekViewRadio_CheckedChanged(object sender, EventArgs e)
         {
-
+            MySQL data = new MySQL();
+            AppointmentsDGV.DataSource = data.GetAppointmentsbyWeek();
         }
 
         private void MonthViewRadio_CheckedChanged(object sender, EventArgs e)
         {
-
+            MySQL data = new MySQL();
+            AppointmentsDGV.DataSource = data.GetAppointmentsbymonth();
         }
 
         private void AllViewRadio_CheckedChanged(object sender, EventArgs e)
@@ -41,10 +63,10 @@ namespace Scheduler
             AppointmentsDGV.DataSource = data.GetAppointments();
         }
 
-        private void LogoutButton_Click(object sender, EventArgs e)
-        {
-            new LoginForm().Show(); this.Hide();
-        }
+        // private void LogoutButton_Click(object sender, EventArgs e)
+        // {                                                                *Replaced by the lambda calling logout()*
+        // new LoginForm().Show(); this.Hide();
+        //  }
 
         private void AppoitmentsAddButton_Click(object sender, EventArgs e)
         {
@@ -135,12 +157,13 @@ namespace Scheduler
 
         private void ReportsButton_Click(object sender, EventArgs e)
         {
-            new Reports(currentUser).Show(); this.Hide();
+            Reports reportspage = new Reports(currentUser);
+            reportspage.Show(); this.Hide();
         }
 
-        private void ExitButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+       // private void ExitButton_Click(object sender, EventArgs e)
+       // {                                                             *Replaced by the lambda calling exitform()*
+        //    Application.Exit();
+       // }
     }
 }
