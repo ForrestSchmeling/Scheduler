@@ -62,7 +62,7 @@ namespace Scheduler
              int month = monthscombo.SelectedIndex;
             AppointmentTypeDGV.DataSource = data.gettypesmymonth( currentUser.userID, month);
         }
-      
+
         
     }
 }

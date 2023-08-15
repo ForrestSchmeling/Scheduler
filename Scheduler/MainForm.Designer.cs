@@ -45,6 +45,10 @@ namespace Scheduler
             this.CustomersUpdateButton = new System.Windows.Forms.Button();
             this.CustomersDeleteButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.appointmentsearchtextbox = new System.Windows.Forms.TextBox();
+            this.customersearchtextbox = new System.Windows.Forms.TextBox();
+            this.Searchbuttoncustomers = new System.Windows.Forms.Button();
+            this.Searchappointmentsbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.AppointmentsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomersDGV)).BeginInit();
             this.SuspendLayout();
@@ -53,6 +57,7 @@ namespace Scheduler
             // 
             this.AppointmentsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AppointmentsDGV.Location = new System.Drawing.Point(17, 37);
+            this.AppointmentsDGV.MultiSelect = false;
             this.AppointmentsDGV.Name = "AppointmentsDGV";
             this.AppointmentsDGV.Size = new System.Drawing.Size(762, 131);
             this.AppointmentsDGV.TabIndex = 0;
@@ -61,6 +66,7 @@ namespace Scheduler
             // 
             this.CustomersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CustomersDGV.Location = new System.Drawing.Point(17, 243);
+            this.CustomersDGV.MultiSelect = false;
             this.CustomersDGV.Name = "CustomersDGV";
             this.CustomersDGV.Size = new System.Drawing.Size(762, 129);
             this.CustomersDGV.TabIndex = 1;
@@ -110,7 +116,6 @@ namespace Scheduler
             this.LogoutButton.TabIndex = 5;
             this.LogoutButton.Text = "Logout";
             this.LogoutButton.UseVisualStyleBackColor = false;
-          //  this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
             // ReportsButton
             // 
@@ -210,13 +215,50 @@ namespace Scheduler
             this.ExitButton.TabIndex = 16;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
-         //   this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
+            // appointmentsearchtextbox
+            // 
+            this.appointmentsearchtextbox.Location = new System.Drawing.Point(375, 9);
+            this.appointmentsearchtextbox.Name = "appointmentsearchtextbox";
+            this.appointmentsearchtextbox.Size = new System.Drawing.Size(100, 20);
+            this.appointmentsearchtextbox.TabIndex = 17;
+            // 
+            // customersearchtextbox
+            // 
+            this.customersearchtextbox.Location = new System.Drawing.Point(375, 214);
+            this.customersearchtextbox.Name = "customersearchtextbox";
+            this.customersearchtextbox.Size = new System.Drawing.Size(100, 20);
+            this.customersearchtextbox.TabIndex = 18;
+            // 
+            // Searchbuttoncustomers
+            // 
+            this.Searchbuttoncustomers.Location = new System.Drawing.Point(308, 214);
+            this.Searchbuttoncustomers.Name = "Searchbuttoncustomers";
+            this.Searchbuttoncustomers.Size = new System.Drawing.Size(61, 23);
+            this.Searchbuttoncustomers.TabIndex = 19;
+            this.Searchbuttoncustomers.Text = "Search";
+            this.Searchbuttoncustomers.UseVisualStyleBackColor = true;
+            this.Searchbuttoncustomers.Click += new System.EventHandler(this.Searchbuttoncustomers_Click);
+            // 
+            // Searchappointmentsbutton
+            // 
+            this.Searchappointmentsbutton.Location = new System.Drawing.Point(314, 8);
+            this.Searchappointmentsbutton.Name = "Searchappointmentsbutton";
+            this.Searchappointmentsbutton.Size = new System.Drawing.Size(55, 23);
+            this.Searchappointmentsbutton.TabIndex = 20;
+            this.Searchappointmentsbutton.Text = "Search";
+            this.Searchappointmentsbutton.UseVisualStyleBackColor = true;
+            this.Searchappointmentsbutton.Click += new System.EventHandler(this.Searchappointmentsbutton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(859, 452);
+            this.Controls.Add(this.Searchappointmentsbutton);
+            this.Controls.Add(this.Searchbuttoncustomers);
+            this.Controls.Add(this.customersearchtextbox);
+            this.Controls.Add(this.appointmentsearchtextbox);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.CustomersDeleteButton);
             this.Controls.Add(this.CustomersUpdateButton);
@@ -235,6 +277,7 @@ namespace Scheduler
             this.Controls.Add(this.AppointmentsDGV);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.AppointmentsDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomersDGV)).EndInit();
             this.ResumeLayout(false);
@@ -259,5 +302,9 @@ namespace Scheduler
         private System.Windows.Forms.Button ExitButton;
         public System.Windows.Forms.DataGridView CustomersDGV;
         public System.Windows.Forms.DataGridView AppointmentsDGV;
+        private System.Windows.Forms.TextBox appointmentsearchtextbox;
+        private System.Windows.Forms.TextBox customersearchtextbox;
+        private System.Windows.Forms.Button Searchbuttoncustomers;
+        private System.Windows.Forms.Button Searchappointmentsbutton;
     }
 }

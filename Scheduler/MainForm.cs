@@ -24,12 +24,14 @@ namespace Scheduler
             CustomersDGV.DataSource = data.GetCustomers();
             AppointmentsDGV.DataSource = data.GetAppointments();
 
-            ExitButton.Click += async (sender, e) =>    // *LAMBDA* makes calling exitbutton much simpler
+            
+
+            ExitButton.Click += async (sender, e) =>    // *LAMBDA* makes calling exitbutton much simpler removing the need for an event handler in Mainform.designer
             {
                 await exitform();    
             };
 
-            LogoutButton.Click += async (sender, e) =>    // *LAMBDA* makes calling logoutbutton much simpler
+            LogoutButton.Click += async (sender, e) =>    // *LAMBDA* makes calling logoutbutton much simpler removing the need for an event handler in Mainform.designer
             {
                 await logout();
             };
@@ -161,9 +163,65 @@ namespace Scheduler
             reportspage.Show(); this.Hide();
         }
 
-       // private void ExitButton_Click(object sender, EventArgs e)
-       // {                                                             *Replaced by the lambda calling exitform()*
+        private void Searchappointmentsbutton_Click(object sender, EventArgs e)
+        {
+            string searchvalue = appointmentsearchtextbox.Text;
+
+
+            try
+            {
+
+                foreach (DataGridViewRow row in AppointmentsDGV.Rows)
+                {
+                    if (row.Cells[0].Value != null)
+                    {
+                        if (row.Cells[0].Value.ToString().Equals(searchvalue))
+                        {
+                            row.Selected = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR searching appointments make sure its the ID" + ex, "ERROR", MessageBoxButtons.OK);
+            }
+        }
+
+        private void Searchbuttoncustomers_Click(object sender, EventArgs e)
+        {
+            string searchvalue = customersearchtextbox.Text;
+            try
+            {
+
+                foreach (DataGridViewRow row in CustomersDGV.Rows)
+                {
+                    if (row.Cells[0].Value != null)
+                    {
+                        if (row.Cells[0].Value.ToString().Equals(searchvalue))
+                        {
+                            row.Selected = true;
+                            break;
+                        }
+                    }
+                }
+                }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR searching customers make sure its the ID" + ex, "ERROR", MessageBoxButtons.OK);
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            CustomersDGV.ClearSelection();
+            AppointmentsDGV.ClearSelection();
+        }
+
+        // private void ExitButton_Click(object sender, EventArgs e)
+        // {                                                             *Replaced by the lambda calling exitform()*
         //    Application.Exit();
-       // }
+        // }
     }
 }
