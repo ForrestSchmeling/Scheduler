@@ -18,7 +18,7 @@ namespace Scheduler
 
         User currentUser;
         bool validApoint;
-        int custId;
+         int custId;
         public AddAppointment(User user, int custSelected)
         {
             InitializeComponent();
@@ -158,7 +158,7 @@ namespace Scheduler
             else
             {
                 validApoint = false;
-                MessageBox.Show("There is overlapping appointments please choose a different time", "ERROR", MessageBoxButtons.OK);
+                MessageBox.Show("The start date should be less than the end date!", "ERROR", MessageBoxButtons.OK);
             }
         }
 
@@ -166,7 +166,7 @@ namespace Scheduler
         {
             MySQL data = new MySQL();
 
-            bool overlap = data.CheckforoverlappingAppointment(EndDateTimePicker.Value.ToUniversalTime(), EndDateTimePicker.Value.ToUniversalTime());
+            bool overlap = data.CheckforoverlappingAppointment(StartDateTimePicker.Value.ToUniversalTime(), EndDateTimePicker.Value.ToUniversalTime());
            if( EndDateTimePicker.Value.Hour <= 8 || EndDateTimePicker.Value.Hour > 16 )
             {
                 
@@ -189,7 +189,7 @@ namespace Scheduler
             else
             {
                 validApoint = false;
-                MessageBox.Show("Error overlapping appointments", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("The start date should be less than the end date!", "Error", MessageBoxButtons.OK);
             }
         }
     }

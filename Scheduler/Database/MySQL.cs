@@ -706,25 +706,28 @@ namespace Scheduler.Database
 
         public bool UpdateAppointment(Appointment aptinfo)
         {
-            bool success;
+            bool success = false;
 
             try
             {
                 string UpdateCommand =
-                    "UPDATE appointment SET  userId = @userId, description = @description, location = @location, " +
-                    "contact = @contact, start = @start, end = @end WHERE appointmentId = @appointmentId";
+                    "UPDATE appointment SET  userId = @userId, title =  @title,  description = @description, location = @location, " +
+                    "contact = @contact, url = @url,  start = @start, end = @end, lastUpdate = @lastUpdate, lastUpdateBy = @lastUpdateBy WHERE appointmentId = @appointmentId";
                 MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = UpdateCommand;
                 cmd.Parameters.AddWithValue("@appointmentId", aptinfo.appointmentID);
-                cmd.Parameters.AddWithValue("@customerId", aptinfo.customerID);
+               // cmd.Parameters.AddWithValue("@customerId", aptinfo.customerID);
                 cmd.Parameters.AddWithValue("@userId", aptinfo.userID);
                 cmd.Parameters.AddWithValue("@title", aptinfo.title);
+                cmd.Parameters.AddWithValue("@url", aptinfo.url);
                 cmd.Parameters.AddWithValue("@description", aptinfo.description);
                 cmd.Parameters.AddWithValue("@location", aptinfo.location);
                 cmd.Parameters.AddWithValue("@contact", aptinfo.contact);
                 cmd.Parameters.AddWithValue("@type", aptinfo.type);
                 cmd.Parameters.AddWithValue("@start", aptinfo.startDate);
                 cmd.Parameters.AddWithValue("@end", aptinfo.endDate);
+                cmd.Parameters.AddWithValue("@lastUpdate", aptinfo.lastupdate);
+                cmd.Parameters.AddWithValue("@lastUpdateBy", aptinfo.lastupdateby);
                 cmd.ExecuteNonQuery();
                 success = true;
             }
@@ -787,16 +790,17 @@ namespace Scheduler.Database
             return aptinfo;
         }
 
-        public bool CheckforoverlappingAppointment(DateTime aptstart, DateTime aptend)
+        public bool CheckforoverlappingAppointmentWhenUpdating(DateTime aptstart, DateTime aptend,int aptId)
         {
             bool overlap = false;
-
+            
             try
             {
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "SELECT EXISTS(SELECT * FROM appointment WHERE START <= @end AND end >=@start)";
+                cmd.CommandText = "SELECT EXISTS(SELECT * FROM appointment WHERE START <= @end AND end >=@start AND appointment.appointmentId <> @appointmentId)";
                 cmd.Parameters.AddWithValue("@start", aptstart);
                 cmd.Parameters.AddWithValue("@end", aptend);
+                cmd.Parameters.AddWithValue("@appointmentId", aptId);
 
                 if(cmd.ExecuteScalar().ToString() == "1")
                 {
@@ -807,6 +811,31 @@ namespace Scheduler.Database
             {
                 MessageBox.Show("Error checking for overlap " + ex);
                 
+            }
+            return overlap;
+        }
+
+        public bool CheckforoverlappingAppointment(DateTime aptstart, DateTime aptend)
+        {
+            bool overlap = false;
+
+            try
+            {
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT EXISTS(SELECT * FROM appointment WHERE START <= @end AND end >=@start)";
+                cmd.Parameters.AddWithValue("@start", aptstart);
+                cmd.Parameters.AddWithValue("@end", aptend);
+                
+
+                if (cmd.ExecuteScalar().ToString() == "1")
+                {
+                    overlap = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error checking for overlap " + ex);
+
             }
             return overlap;
         }
