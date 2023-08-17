@@ -61,6 +61,7 @@ namespace Scheduler
             this.AppointmentsDGV.Name = "AppointmentsDGV";
             this.AppointmentsDGV.Size = new System.Drawing.Size(762, 131);
             this.AppointmentsDGV.TabIndex = 0;
+            this.AppointmentsDGV.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.AppointmentsDGV_CellFormatting);
             // 
             // CustomersDGV
             // 

@@ -103,6 +103,7 @@ namespace Scheduler
             this.AppointmentConsultantDGV.Name = "AppointmentConsultantDGV";
             this.AppointmentConsultantDGV.Size = new System.Drawing.Size(717, 140);
             this.AppointmentConsultantDGV.TabIndex = 5;
+            this.AppointmentConsultantDGV.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.AppointmentConsultantDGV_CellFormatting);
             // 
             // AppointmentTypeDGV
             // 
@@ -111,6 +112,7 @@ namespace Scheduler
             this.AppointmentTypeDGV.Name = "AppointmentTypeDGV";
             this.AppointmentTypeDGV.Size = new System.Drawing.Size(717, 140);
             this.AppointmentTypeDGV.TabIndex = 6;
+            this.AppointmentTypeDGV.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.AppointmentTypeDGV_CellFormatting);
             // 
             // AppointmentCustomerDGV
             // 
@@ -119,6 +121,7 @@ namespace Scheduler
             this.AppointmentCustomerDGV.Name = "AppointmentCustomerDGV";
             this.AppointmentCustomerDGV.Size = new System.Drawing.Size(717, 140);
             this.AppointmentCustomerDGV.TabIndex = 7;
+            this.AppointmentCustomerDGV.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.AppointmentCustomerDGV_CellFormatting);
             // 
             // ConsultantCombo
             // 

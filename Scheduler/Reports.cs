@@ -63,6 +63,37 @@ namespace Scheduler
             AppointmentTypeDGV.DataSource = data.gettypesmymonth( currentUser.userID, month);
         }
 
-        
+        private void AppointmentConsultantDGV_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value is DateTime)
+            {
+                var date = (DateTime)e.Value;
+                var localdate = date.ToLocalTime();
+                e.Value = localdate;
+
+            }
+        }
+
+        private void AppointmentCustomerDGV_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value is DateTime)
+            {
+                var date = (DateTime)e.Value;
+                var localdate = date.ToLocalTime();
+                e.Value = localdate;
+
+            }
+        }
+
+        private void AppointmentTypeDGV_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value is DateTime)
+            {
+                var date = (DateTime)e.Value;
+                var localdate = date.ToLocalTime();
+                e.Value = localdate;
+
+            }
+        }
     }
 }

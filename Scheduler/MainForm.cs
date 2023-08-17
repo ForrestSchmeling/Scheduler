@@ -219,6 +219,17 @@ namespace Scheduler
             AppointmentsDGV.ClearSelection();
         }
 
+        private void AppointmentsDGV_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if(e.Value is DateTime)
+            {
+                var date = (DateTime)e.Value;
+                var localdate = date.ToLocalTime();
+                e.Value = localdate;
+
+            }
+        }
+
         // private void ExitButton_Click(object sender, EventArgs e)
         // {                                                             *Replaced by the lambda calling exitform()*
         //    Application.Exit();
